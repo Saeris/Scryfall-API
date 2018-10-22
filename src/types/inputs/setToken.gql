@@ -1,0 +1,6 @@
+input SetToken {
+  code: [String]!
+  scope: PrintingScopes = "Set"
+  combine: Boolean = false
+  include: Boolean = true
+}

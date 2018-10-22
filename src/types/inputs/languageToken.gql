@@ -1,0 +1,5 @@
+input LanguageToken {
+  language: [Languages]!
+  combine: Boolean = false
+  include: Boolean = true
+}

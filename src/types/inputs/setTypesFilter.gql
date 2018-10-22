@@ -1,0 +1,6 @@
+input SetTypesFilter {
+  "A list of Set Types to either Include or Exclude."
+  types: [SetTypes!]!
+  "Includes the list of Set Types when true, Excludes when false."
+  include: Boolean = true
+}

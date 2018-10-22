@@ -1,0 +1,4 @@
+input ToggleToken {
+  value: Boolean!
+  include: Boolean = true
+}

@@ -1,0 +1,4 @@
+input CMCToken {
+  cmc: Float!
+  comparison: Operators = "eq"
+}

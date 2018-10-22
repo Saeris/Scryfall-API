@@ -1,0 +1,6 @@
+input TextToken {
+  oracle: [String]!
+  fullText: Boolean = false
+  combine: Boolean = false
+  include: Boolean = true
+}

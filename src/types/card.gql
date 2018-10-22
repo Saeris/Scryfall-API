@@ -1,0 +1,85 @@
+"""
+[Cards](https://scryfall.com/docs/api/cards)
+"""
+type Card {
+  # Core Fields
+  "A unique ID for this card in Scryfall’s database."
+  id: ID!
+  "A unique ID for this card’s oracle identity. This value is consistent across reprinted card editions, and unique among different cards with the same name (tokens, Unstable variants, etc)."
+  oracleId: ID!
+  "A language code for this printing."
+  language: String!
+
+  # Gamplay Fields
+  "The card’s converted mana cost. Note that some funny cards have fractional mana costs."
+  cmc: Float!
+  "This card’s colors, if the overall card has colors defined by the rules. Otherwise the colors will be on the Faces objects."
+  colors: [Colors!]
+  "This card’s color identity."
+  identities: [Colors!]!
+  "True if this printing exists in a foil version."
+  foil: Boolean!
+  "This card’s hand modifier, if it is Vanguard card. This value will contain a delta, such as -1."
+  handModifier: String
+  "A code for this card’s layout."
+  layout: Layouts!
+  "An object describing the legality of this card across play formats. Possible legalities are legal, illegal, restricted, and banned."
+  legalities: [Legality!]!
+  "This card’s life modifier, if it is Vanguard card. This value will contain a delta, such as +2."
+  lifeModifier: String
+  "This loyalty if any. Note that some cards have loyalties that are not numeric, such as X."
+  loyalty: String
+  "The mana cost for this card. This value will be any empty string '' if the cost is absent. Remember that per the game rules, a missing mana cost and a mana cost of 0 are different values. Multi-faced cards will report this value in card faces."
+  cost: String
+  "The name of this card. If this card has multiple faces, this field will contain both names separated by //."
+  name: String!
+  "This card’s power, if any. Note that some cards have powers that are not numeric, such as *."
+  power: String
+  "The Oracle text for this card, if any."
+  text: String
+  "This card’s toughness, if any. Note that some cards have toughnesses that are not numeric, such as *."
+  toughness: String
+  "The type line of this card."
+  type: String
+
+  # Print Fields
+  "The name of the illustrator of this card. Newly spoiled cards may not have this field yet."
+  artist: String
+  "This card’s border color."
+  border: Borders!
+  "This card’s collector number. Note that collector numbers can contain non-numeric characters, such as letters or ★."
+  number: String!
+  "True if this card is colorshifted."
+  colorshifted: Boolean!
+  "True if this is a digital card on Magic Online."
+  digital: Boolean!
+  "The flavor text, if any."
+  flavorText: String
+  "This card’s frame layout."
+  frame: Frames!
+  "True if this card’s artwork is larger than normal."
+  fullArt: Boolean!
+  "True if this card is from the future."
+  futureshifted: Boolean!
+  "This card’s rarity."
+  rarity: Rarities!
+  "True if this card is a reprint."
+  reprint: Boolean!
+  "This card’s set."
+  set: Set!
+  "True if this card is timeshifted."
+  timeshifted: Boolean!
+  "This card’s watermark, if any."
+  watermark: String
+
+  # Localized Fields
+  "The localized name printed on this card, if any."
+  printedName: String
+  "The localized text printed on this card, if any."
+  printedText: String
+  "The localized type line printed on this card, if any."
+  printedType: String
+
+  # Faces
+  faces: [Face!]
+}

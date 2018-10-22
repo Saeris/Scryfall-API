@@ -1,0 +1,67 @@
+"The five primary colors, colorless, multicolored, guilds, shards, wedges, and four-color identities."
+enum Identities {
+  "White"
+  W
+  "Blue"
+  U
+  "Black"
+  B
+  "Red"
+  R
+  "Green"
+  G
+  "Colorless"
+  C
+  "Multicolored"
+  M
+  "Azorius Senate (W/U)"
+  Azorius
+  "House Dimir (U/B)"
+  Dimir
+  "Cult of Rakdos (B/R)"
+  Rakdos
+  "Gruul Clans (R/G)"
+  Gruul
+  "Selesnya Conclave (G/W)"
+  Selesnya
+  "Orzhov Syndicate (W/B)"
+  Orzhov
+  "Izzet League (U/R)"
+  Izzet
+  "Golgari Swarn (B/G)"
+  Golgari
+  "Boros Legion (R/W)"
+  Boros
+  "Simic Combine (G/U)"
+  Simic
+  "Bant (G/W/U)"
+  Bant
+  "Esper (W/U/B)"
+  Esper
+  "Grixis (U/B/R)"
+  Grixis
+  "Jund (B/R/G)"
+  Jund
+  "Naya (R/G/W)"
+  Naya
+  "Abzan Houses (W/B/G)"
+  Abzan
+  "Jeskai Way (U/R/W)"
+  Jeskai
+  "Sultai Brood (B/G/U)"
+  Sultai
+  "Mardu Horde (R/W/B)"
+  Mardu
+  "Temur Frontier (G/U/R)"
+  Temur
+  "Artifice (W/U/B/R)"
+  Artifice
+  "Chaos (U/B/R/G)"
+  Chaos
+  "Aggression (B/R/G/W)"
+  Aggression
+  "Altruism (R/G/W/U)"
+  Altruism
+  "Growth (G/W/U/B)"
+  Growth
+}

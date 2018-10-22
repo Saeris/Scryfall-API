@@ -1,0 +1,23 @@
+"https://scryfall.com/docs/api/sets"
+type Set {
+  "The unique three or four-letter code for this set."
+  code: String!
+  "The English name of the set."
+  name: String!
+  "A computer-readable classification for this set."
+  type: SetTypes!
+  "The date the set was released (in GMT-8 Pacific time). Not all sets have a known release date."
+  releaseDate: DateTime
+  "The block or group name code for this set, if any."
+  block: String
+  "The set code for the parent set, if any. promo and token sets often have a parent set."
+  parentSet: Set
+  "The number of cards in this set."
+  cardCount: Int
+  "Cards belonging to this set."
+  cards(page: Int): List!
+  "True if this set was only released on Magic Online."
+  digital: Boolean!
+  "	True if this set contains only foil cards."
+  foil: Boolean!
+}

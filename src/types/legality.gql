@@ -1,0 +1,5 @@
+"https://scryfall.com/docs/reference#legality"
+type Legality {
+  format: Formats!
+  legality: Legalities!
+}

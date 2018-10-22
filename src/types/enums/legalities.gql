@@ -1,0 +1,7 @@
+"https://scryfall.com/docs/reference#legality"
+enum Legalities {
+  Legal
+  Restricted
+  Banned
+  Illegal
+}

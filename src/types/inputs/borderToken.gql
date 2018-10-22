@@ -1,0 +1,5 @@
+input BorderToken {
+  border: [Borders]!
+  combine: Boolean = false
+  include: Boolean = true
+}

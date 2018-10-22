@@ -1,0 +1,7 @@
+"https://scryfall.com/docs/reference#rarity"
+enum Rarities {
+  Common
+  Uncommon
+  Rare
+  Mythic
+}

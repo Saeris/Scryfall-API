@@ -1,0 +1,18 @@
+enum Operators {
+  ">"
+  gt
+  "<"
+  lt
+  ">="
+  gte
+  "<="
+  lte
+  "="
+  eq
+  "!="
+  noteq
+  "-"
+  not
+  ":"
+  is
+}

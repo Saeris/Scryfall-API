@@ -1,0 +1,7 @@
+export { default as Card } from "./card.gql"
+export { default as Face } from "./face.gql"
+export { default as Legality } from "./legality.gql"
+export { default as List } from "./list.gql"
+export { default as Query } from "./query.gql"
+export { default as Schema } from "./schema.gql"
+export { default as Set } from "./set.gql"

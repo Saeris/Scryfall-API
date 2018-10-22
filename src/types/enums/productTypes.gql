@@ -1,0 +1,29 @@
+enum ProductTypes {
+  Boxset
+  Multiplayer
+  Beginner
+  Core
+  Expansion
+  Masters
+  Unset
+  Portal
+  Commander
+  DuelDeck
+  FromTheVault
+  PremiumDeck
+  FNM
+  JudgeGift
+  ArenaLeague
+  PlayerRewards
+  MediaInsert
+  Tourney
+  Gateway
+  WPN
+  InStore
+  Convention
+  SetPromo
+  Duels
+  Event
+  PremiereShop
+  Masterpiece
+}

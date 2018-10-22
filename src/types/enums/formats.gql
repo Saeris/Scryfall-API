@@ -1,0 +1,15 @@
+"https://scryfall.com/docs/reference#legality"
+enum Formats {
+  Standard
+  Modern
+  Legacy
+  Vintage
+  Commander
+  Brewl
+  Future
+  Pauper
+  Frontier
+  Penny
+  CommanderVersus
+  Duel
+}

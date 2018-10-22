@@ -1,0 +1,5 @@
+input ProductToken {
+  product: [ProductTypes]!
+  combine: Boolean = false
+  include: Boolean = true
+}

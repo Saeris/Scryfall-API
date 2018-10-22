@@ -1,0 +1,5 @@
+input StringToken {
+  value: [String]!
+  combine: Boolean = false
+  include: Boolean = true
+}

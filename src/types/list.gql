@@ -1,0 +1,7 @@
+"https://scryfall.com/docs/api/lists"
+type List {
+  page: Int!
+  hasMore: Boolean!
+  totalCards: Int
+  results: [ListItem!]!
+}

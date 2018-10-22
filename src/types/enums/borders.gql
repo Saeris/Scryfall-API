@@ -1,0 +1,8 @@
+"https://scryfall.com/docs/reference#frame"
+enum Borders {
+  Black
+  Borderless
+  Gold
+  Silver
+  White
+}

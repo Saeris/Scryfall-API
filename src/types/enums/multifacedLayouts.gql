@@ -1,0 +1,8 @@
+enum MultifacedLayouts {
+  Split
+  Flip
+  Transform
+  Meld
+  Leveler
+  DoubleFacedToken
+}

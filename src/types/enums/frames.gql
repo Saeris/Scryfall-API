@@ -1,0 +1,13 @@
+"https://scryfall.com/docs/api/layouts"
+enum Frames {
+  "1993 - The original Magic card frame, starting from Limited Edition Alpha."
+  Original
+  "1997 - The updated classic frame starting from Mirage block"
+  Classic
+  "2003 - The “modern” Magic card frame, introduced in Eighth Edition and Mirrodin block."
+  Modern
+  "2015 - The holofoil-stamp Magic card frame, introduced in Magic 2015."
+  Holofoil
+  "future - The frame used on cards from the future"
+  Future
+}

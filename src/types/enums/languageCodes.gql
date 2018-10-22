@@ -1,0 +1,36 @@
+enum LanguageCodes {
+  "English"
+  en
+  "Spanish"
+  es
+  "French"
+  fr
+  "German"
+  de
+  "Italian"
+  it
+  "Portuguese"
+  pt
+  "Japanese"
+  ja
+  "Korean"
+  ko
+  "Russian"
+  ru
+  "Simplified Chinese"
+  zhs
+  "Traditional Chinese"
+  zht
+  "Hebrew"
+  he
+  "Latin"
+  la
+  "Ancient Greek"
+  grc
+  "Arabic"
+  ar
+  "Sanskrit"
+  sa
+  "Phyrexian"
+  px
+}

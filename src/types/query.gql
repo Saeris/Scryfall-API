@@ -1,0 +1,14 @@
+type Query {
+  "Used to retrieve a single Card by it's Scryfall ID."
+  card(id: ID!): Card!
+  "Used to retrieve a single Set by it's Set Code."
+  set(code: ID!): Set!
+
+  "Returns a paginated List of All Cards."
+  cards: List!
+  "Returns a List of all Sets."
+  sets(filter: SetFilter): List!
+
+  "Returns a list of Cards that fit the supplied search criteria."
+  searchCards(query: Search!, page: Int): List!
+}

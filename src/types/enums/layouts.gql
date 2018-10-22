@@ -1,0 +1,33 @@
+"https://scryfall.com/docs/api/layouts"
+enum Layouts {
+  "A standard Magic card with one face"
+  Normal
+  "A split-faced card"
+  Split
+  "Cards that invert vertically with the flip keyword"
+  Flip
+  "Double-sided cards that transform"
+  Transform
+  "Cards with meld parts printed on the back"
+  Meld
+  "Cards with Level Up"
+  Leveler
+  "Saga-type cards"
+  Saga
+  "Plane and Phenomenon-type cards"
+  Planar
+  "Scheme-type cards"
+  Scheme
+  "Vanguard-type cards"
+  Vanguard
+  "Token cards"
+  Token
+  "Tokens with another token printed on the back"
+  DoubleFacedToken
+  "Emblem cards"
+  Emblem
+  "Cards with Augment"
+  Augment
+  "Host-type cards"
+  Host
+}

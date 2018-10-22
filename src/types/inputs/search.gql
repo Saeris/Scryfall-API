@@ -1,0 +1,36 @@
+"https://scryfall.com/docs/reference#sets"
+input Search {
+  color: [ColorToken!]
+  identity: [IdentityToken!]
+  supertype: [SupertypeToken!]
+  type: [CardTypeToken!]
+  subtype: [SubtypeToken!]
+  text: [TextToken!]
+  mana: [StringToken!]
+  cmc: [CMCToken!]
+  power: [PTLToken!]
+  toughness: [PTLToken!]
+  totalPT: [PTLToken!]
+  loyalty: [PTLToken!]
+  multifaced: MultifacedLayouts
+  spell: ToggleToken
+  permanent: ToggleToken
+  historic: ToggleToken
+  vanilla: ToggleToken
+  extras: ToggleToken
+  rarity: [RarityToken!]
+  set: [SetToken!]
+  product: [ProductToken!]
+  format: [FormatToken!]
+  banned: [FormatToken!]
+  restricted: [FormatToken!]
+  artist: [StringToken!]
+  flavorText: [StringToken!]
+  watermark: [WatermarkToken!]
+  border: [BorderToken!]
+  frame: [FrameToken!]
+  releaseDate: [ReleaseToken!]
+  reprint: ToggleToken
+  unique: ToggleToken
+  language: [LanguageToken!]
+}

@@ -1,0 +1,8 @@
+enum PrintingScopes {
+  "Exists within a Set"
+  Set
+  "Exists within a Block (A Block is refered to by a Set Code from that Block)"
+  Block
+  "Once appeared in this Set"
+  In
+}

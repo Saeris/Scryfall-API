@@ -1,0 +1,9 @@
+enum Supertypes {
+  Basic
+  Elite
+  Host
+  Legendary
+  Ongoing
+  Snow
+  World
+}
