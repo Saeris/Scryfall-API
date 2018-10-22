@@ -1,4 +1,4 @@
-<h1 align="center" style="text-align: center;">Scryfall API</h1>
+<h1 align="center" style="text-align: center;">🌠 Scryfall API</h1>
 <p align="center">
   <a href="https://travis-ci.org/Saeris/scryfall-api">
     <img src="https://travis-ci.org/Saeris/scryfall-api.svg?branch=master" alt="Build Status">
@@ -13,7 +13,7 @@
     <img src="https://badges.greenkeeper.io/Saeris/scryfall-api.svg" alt="Dependencies">
   </a>
 </p>
-<p align="center">A GraphQL API wrapper for Scryfall built with<a href="https://www.apollographql.com/docs/apollo-server/features/data-sources.html">Apollo Data Sources</a>.</p>
+<p align="center">A GraphQL API wrapper for Scryfall built with <a href="https://www.apollographql.com/docs/apollo-server/features/data-sources.html">Apollo Data Sources</a>.</p>
 
 ## 🚧 Under Construction
 
