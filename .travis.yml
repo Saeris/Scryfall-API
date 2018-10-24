@@ -30,11 +30,10 @@ before_script:
   - yarn test:coverage
   - yarn remove babel-core
   - yarn
-  - yarn start:api&
+  - yarn start&
 
 script:
-  - yarn build
-  # - apollo schema:check --endpoint=http://localhost:1337/api
+  # - apollo schema:check --endpoint=http://localhost:1337/
 
 after_script:
   - greenkeeper-lockfile-upload
@@ -52,7 +51,7 @@ deploy:
     skip_cleanup: true
     script:
       - yarn deploy:prod
-      # - apollo schema:publish --endpoint=http://localhost:1337/api
+      # - apollo schema:publish --endpoint=http://localhost:1337/
     on:
       node: "8"
       branch: master
