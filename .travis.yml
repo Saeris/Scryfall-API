@@ -17,18 +17,14 @@ branches:
   - /^greenkeeper/.*$/
 
 before_install:
-  - yarn global add serverless
-  - yarn global add greenkeeper-lockfile@1
-  - yarn global add apollo
+  - yarn global add serverless greenkeeper-lockfile@1 apollo
 
 install:
   - yarn
-  - yarn add -D babel-core@^7.0.0-0
 
 before_script:
   - greenkeeper-lockfile-update
   - yarn test:coverage
-  - yarn remove babel-core
   - yarn
   - yarn start&
 
