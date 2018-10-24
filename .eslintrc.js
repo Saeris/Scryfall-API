@@ -8,9 +8,11 @@ module.exports = {
   env: {
     es6: true,
     node: true,
-    browser: true
+    browser: true,
+    "jest/globals": true
   },
   plugins: [
+    `jest`, // https://github.com/jest-community/eslint-plugin-jest
     `import`, // https://github.com/benmosher/eslint-plugin-import
     `promise` // https://github.com/xjamundx/eslint-plugin-promise
   ],
@@ -335,6 +337,23 @@ module.exports = {
     "yield-star-spacing": [2, { before: false, after: true }],
 
     /*--- Plugin Specific Rules ---*/
+    // jest
+    "jest/consistent-test-it"                   : 2,
+    "jest/lowercase-name"                       : 0,
+    "jest/no-disabled-tests"                    : 1,
+    "jest/no-focused-tests"                     : 2,
+    "jest/no-hooks"                             : 0,
+    "jest/no-identical-title"                   : 2,
+    "jest/no-jest-import"                       : 2,
+    "jest/no-large-snapshots"                   : [1, { "maxSize": 12 }],
+    "jest/no-test-prefixes"                     : 2,
+    "jest/prefer-to-have-length"                : 1,
+    "jest/prefer-to-be-null"                    : 1,
+    "jest/prefer-to-be-undefined"               : 1,
+    "jest/prefer-expect-assertions"             : 0,
+    "jest/valid-describe"                       : 2,
+    "jest/valid-expect"                         : 2,
+    "jest/valid-expect-in-promise"              : 2,
 
     // import
     "import/no-unresolved": [2, { commonjs: true, amd: true }],

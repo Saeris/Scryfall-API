@@ -29,10 +29,7 @@ module.exports = {
   env: {
     test: {
       sourceMaps: `inline`,
-      plugins: [
-        require(`@babel/plugin-transform-runtime`),
-        require(`babel-plugin-import-graphql`)
-      ],
+      plugins: [require(`@babel/plugin-transform-runtime`)],
       presets: [
         [
           require(`@babel/preset-env`),
