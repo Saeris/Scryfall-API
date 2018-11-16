@@ -42,7 +42,7 @@
     "node-vibrant": "^3.0.0",
     "potrace": "^2.1.1",
     "querystring": "^0.2.0",
-    "regenerator-runtime": "^0.12.1",
+    "regenerator-runtime": "^0.13.0",
     "svgo": "^1.0.5",
     "winston": "^3.0.0"
   },
