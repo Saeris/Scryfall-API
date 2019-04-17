@@ -31,7 +31,7 @@
     "apollo-datasource-rest": "^0.1.1",
     "apollo-server-lambda": "^2.0.0",
     "aws-lambda": "^0.1.2",
-    "datauri": "^1.1.0",
+    "datauri": "^2.0.0",
     "date-fns": "^1.29.0",
     "graphql": "^14.0.2",
     "graphql-custom-directives": "^0.2.13",
