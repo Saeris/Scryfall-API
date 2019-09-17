@@ -64,7 +64,7 @@
     "babel-loader": "^8.0.0-beta.2",
     "babel-plugin-import-graphql": "^2.6.2",
     "codecov": "^3.0.0",
-    "cross-env": "^5.2.0",
+    "cross-env": "^6.0.0",
     "eslint": "^5.4.0",
     "eslint-plugin-compat": "^2.0.1",
     "eslint-plugin-graphql": "^2.1.0-0",
