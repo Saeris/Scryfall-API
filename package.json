@@ -30,7 +30,7 @@
     "apollo-datasource": "^0.1.2",
     "apollo-datasource-rest": "^0.1.1",
     "apollo-server-lambda": "^2.0.0",
-    "aws-lambda": "^0.1.2",
+    "aws-lambda": "^1.0.0",
     "datauri": "^1.1.0",
     "date-fns": "^1.29.0",
     "graphql": "^14.0.2",
