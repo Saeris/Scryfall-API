@@ -19,7 +19,8 @@
     "deploy:dev": "cross-env SLS_DEBUG=TRUE serverless --stage=dev deploy",
     "deploy:prod": "serverless --stage=production deploy",
     "debug": "set SLS_DEBUG=* && yarn start",
-    "test": "jest -c ./jest.config.js",
+    "lint": "eslint ./src",
+    "test": "yarn lint && jest -c ./jest.config.js",
     "test:watch": "jest -c ./jest.config.js --watch",
     "test:coverage": "jest -c ./jest.config.js && codecov",
     "precommit": "lint-staged"
@@ -70,6 +71,7 @@
     "babel-plugin-import-graphql": "^2.7.0",
     "codecov": "^3.6.5",
     "cross-env": "^7.0.2",
+    "core-js": "3",
     "eslint": "^6.8.0",
     "eslint-plugin-compat": "^3.5.1",
     "eslint-plugin-graphql": "^3.1.1",
