@@ -25,15 +25,15 @@ module.exports = {
   optimization: {
     minimize: false
   },
+  resolve: {
+    extensions: [`.ts`, `.js`]
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(m?js|ts)$/,
         loader: `babel-loader`,
-        exclude: /node_modules/,
-        options: {
-          cacheDirectory: true
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.(graphql|gql)$/,

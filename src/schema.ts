@@ -15,7 +15,9 @@ import {
   GraphQLToUpperDirective,
   GraphQLTemplateDirective,
   applySchemaCustomDirectives
+  // @ts-ignore
 } from "graphql-custom-directives"
+// @ts-ignore
 import CustomScalars from "@saeris/graphql-scalars"
 import * as types from "./types"
 import * as enums from "./types/enums"
@@ -59,6 +61,7 @@ const directives = [
   GraphQLTemplateDirective
 ]
 
+// @ts-ignore
 schema._directives.push(...directives)
 applySchemaCustomDirectives(schema)
 

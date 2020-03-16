@@ -1,9 +1,7 @@
 import { ApolloServer } from "apollo-server-lambda"
-import { error } from "winston"
 import schema from "./schema"
 import dataSources from "./sources"
 import { defaultQuery } from "./defaultQuery"
-import "./logger"
 
 const isDev = process.env.stage === `dev`
 const server = new ApolloServer({
@@ -17,11 +15,22 @@ const server = new ApolloServer({
   dataSources,
   tracing: true,
   formatError: err => {
-    error(err)
+    // eslint-disable-next-line no-console
+    console.error(err)
     return err
   },
   introspection: isDev,
-  playground: isDev ? { tabs: [{ endpoint: `http://localhost:1337/`, query: defaultQuery, name: `cardById` }] } : false
+  playground: isDev
+    ? {
+        tabs: [
+          {
+            endpoint: `http://localhost:1337/`,
+            query: defaultQuery,
+            name: `cardById`
+          }
+        ]
+      }
+    : false
 })
 
 export const graphqlHandler = server.createHandler({
