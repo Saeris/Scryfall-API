@@ -1,1 +1,1 @@
-export * as ScryfallModels from "./scryfall"
+export { default as ScryfallModels } from "./scryfall"

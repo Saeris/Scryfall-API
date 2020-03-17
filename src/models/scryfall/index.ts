@@ -1,2 +1,7 @@
-export { Card } from "./card"
-export { Set } from "./set"
+import { Card } from "./card"
+import { Set } from "./set"
+
+export default {
+  Card,
+  Set
+}

@@ -1,6 +1,15 @@
-export * as Card from "./card"
-export * as Face from "./face"
-export * as List from "./list"
-export * as ListItem from "./listItem"
-export * as Query from "./query"
-export * as Set from "./set"
+import * as Card from "./card"
+import * as Face from "./face"
+import * as List from "./list"
+import * as ListItem from "./listItem"
+import * as Query from "./query"
+import * as Set from "./set"
+
+export default {
+  Card,
+  Face,
+  List,
+  ListItem,
+  Query,
+  Set
+}

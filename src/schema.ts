@@ -1,30 +1,16 @@
-import { makeExecutableSchema } from "graphql-tools"
-import {
-  GraphQLDateDirective,
-  GraphQLNumberDirective,
-  GraphQLCurrencyDirective,
-  GraphQLLowerCaseDirective,
-  GraphQLUpperCaseDirective,
-  GraphQLCamelCaseDirective,
-  GraphQLStartCaseDirective,
-  GraphQLCapitalizeDirective,
-  GraphQLKebabCaseDirective,
-  GraphQLTrimDirective,
-  GraphQLDefaultToDirective,
-  GraphQLToLowerDirective,
-  GraphQLToUpperDirective,
-  GraphQLTemplateDirective,
-  applySchemaCustomDirectives
-  // @ts-ignore
-} from "graphql-custom-directives"
-// @ts-ignore
+import { makeExecutableSchema, IResolvers } from "graphql-tools"
+import schemaDirectives from "@saeris/graphql-directives"
 import CustomScalars from "@saeris/graphql-scalars"
 import * as types from "./types"
 import * as enums from "./types/enums"
 import * as inputs from "./types/inputs"
 //import * as interfaces from "./types/interfaces"
 import * as unions from "./types/unions"
-import * as resolvers from "./resolvers"
+import resolvers from "./resolvers"
+
+const directives = Object.values(schemaDirectives).map(directive =>
+  directive.declaration()
+)
 
 export const schema = makeExecutableSchema({
   typeDefs: [
@@ -32,37 +18,18 @@ export const schema = makeExecutableSchema({
     ...Object.values(enums),
     ...Object.values(inputs),
     ...Object.values(unions),
-    ...CustomScalars.keys()
+    ...CustomScalars.keys(),
+    ...directives
   ],
+  schemaDirectives,
   resolvers: {
-    ...CustomScalars.values(),
-    ...resolvers
+    ...(CustomScalars.values() as Record<any, any>),
+    ...(resolvers as IResolvers<any, any>)
   },
   resolverValidationOptions: {
     requireResolversForResolveType: false
   },
   inheritResolversFromInterfaces: true
 })
-
-const directives = [
-  GraphQLDateDirective,
-  GraphQLNumberDirective,
-  GraphQLCurrencyDirective,
-  GraphQLLowerCaseDirective,
-  GraphQLUpperCaseDirective,
-  GraphQLCamelCaseDirective,
-  GraphQLStartCaseDirective,
-  GraphQLCapitalizeDirective,
-  GraphQLKebabCaseDirective,
-  GraphQLTrimDirective,
-  GraphQLDefaultToDirective,
-  GraphQLToLowerDirective,
-  GraphQLToUpperDirective,
-  GraphQLTemplateDirective
-]
-
-// @ts-ignore
-schema._directives.push(...directives)
-applySchemaCustomDirectives(schema)
 
 export default schema
