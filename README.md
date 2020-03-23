@@ -22,7 +22,7 @@ ENGINE_API_KEY=<insert your apollo graph manager api key here>
 Once that's done, you can now start up a development server using `yarn start`. By default this will use Serverless Offline, but if you would instead like to use Netlify Lamba, you can run `yarn start:netlify` instead. Once the development server is listening, you can pull up a GraphQL Playground by visiting one of the following URLs:
 
 Lambda: http://localhost:1337/dev
-Netlify: http://localhost:1337/.netlify/functions/yotsuba-api
+Netlify: http://localhost:1337/.netlify/functions/scryfall-api
 
 ## 🧪 Testing
 
