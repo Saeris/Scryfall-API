@@ -1,16 +1,23 @@
 module.exports = {
   plugins: [
+    ...(process.env.PIKA
+      ? [[require(`babel-plugin-import-graphql`), { runtime: true }]]
+      : []),
     require(`@babel/plugin-transform-runtime`),
     require(`@babel/plugin-proposal-class-properties`),
     require(`@babel/plugin-transform-object-assign`),
-    require(`@babel/plugin-proposal-object-rest-spread`),
-    require(`@babel/plugin-proposal-export-namespace-from`)
+    require(`@babel/plugin-proposal-object-rest-spread`)
   ],
   presets: [
     require(`@babel/preset-typescript`),
     [
       require(`@babel/preset-env`),
-      { targets: { node: true }, useBuiltIns: `usage`, corejs: 3 }
+      {
+        targets: { node: true },
+        useBuiltIns: `usage`,
+        corejs: 3,
+        bugfixes: true
+      }
     ]
   ],
   env: {
@@ -24,10 +31,11 @@ module.exports = {
             targets: { node: true },
             modules: `commonjs`,
             useBuiltIns: `usage`,
-            corejs: 3
+            corejs: 3,
+            bugfixes: true
           }
         ]
       ]
     }
   }
-}
+};

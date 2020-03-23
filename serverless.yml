@@ -2,34 +2,53 @@ service: "scryfall-api"
 
 provider:
   name: aws
-  runtime: "nodejs8.10"
+  runtime: "nodejs12.x"
   region: "us-west-2"
   stage: ${opt:stage, "dev"}
   environment:
     stage: ${self:provider.stage}
+    PORT: 1337
+    ENGINE_API_KEY: ${env:ENGINE_API_KEY, param:ENGINE_API_KEY}
+    URL:
+      {
+        "Fn::Join":
+          [
+            "",
+            [
+              " https://",
+              { "Ref": "ApiGatewayRestApi" },
+              ".execute-api.${self:provider.region}.amazonaws.com/${self:provider.stage}/",
+            ],
+          ],
+      }
 
 plugins:
+  - "serverless-dotenv-plugin"
   - "serverless-webpack"
   - "serverless-offline"
 
 package:
   exclude:
     - "./ node_modules/**"
-    - "./.eslintrc.json"
-    - "./webpack.config.js"
+    - "./.eslintrc.js"
+    - "./.babelrc.js"
+    - "./apollo.config.js"
+    - "./jest.config.js"
+    - "./tsconfig.json"
+    - "./webpack.*.js"
 
 custom:
   serverless-offline:
-    port: 1337
+    httpPort: ${self:provider.environment.PORT}
   webpack:
     includeModules: true
-    webpackConfig: "webpack.config.js"
+    webpackConfig: "webpack.lambda.js"
 
 functions:
   graphql:
-    handler: "src/index.graphqlHandler"
+    handler: "lambda/scryfall-api.handler"
     events:
       - http:
-          path: "{proxy+}"
+          path: "/{proxy+}"
           method: any
           cors: true

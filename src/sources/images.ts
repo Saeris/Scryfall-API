@@ -1,5 +1,4 @@
 import { DataSource } from "apollo-datasource"
-import { KeyValueCache } from "apollo-server-caching"
 import AWS from "aws-sdk"
 import SVGO from "svgo"
 import Vibrant from "node-vibrant"
@@ -7,34 +6,49 @@ import Vibrant from "node-vibrant"
 import { Potrace } from "potrace"
 // @ts-ignore
 import DataURI from "datauri" // https://www.npmjs.com/package/datauri
-import { memoize } from "../utils"
+import { Context } from "../server"
+import { memoize, round } from "../utils"
 
-type Color =
+export type Color =
   | "vibrant"
   | "lightVibrant"
   | "darkVibrant"
   | "muted"
   | "lightMuted"
   | "darkMuted"
+
+interface SVGOptions {
+  color?: Color
+  base64?: boolean
+}
+
+export type SVGResult = Promise<string | null>
+
+export type ImageResult = string | null | SVGResult
+
+export type ColorsResult = ReturnType<Images["extractColor"]> | null
+
 type GetSVG = (
-  filename: string,
-  size: string,
-  color: Color,
-  base64: boolean
-) => Promise<any>
+  options: {
+    id: string
+    size?: string
+  } & SVGOptions
+) => SVGResult
+
 type Custom = (
-  filename: string,
-  size: string,
-  svg: boolean,
-  color: Color,
-  base64: boolean
-) => string | Promise<any>
+  options: {
+    id: string
+    size: string
+    svg?: boolean
+  } & SVGOptions
+) => ImageResult
+
 type GetCustom = (
-  id: string,
-  svg: boolean,
-  color: Color,
-  base64: boolean
-) => string | Promise<any>
+  options: {
+    id: string
+    svg?: boolean
+  } & SVGOptions
+) => ImageResult
 
 const { debug, error } = console
 
@@ -43,15 +57,15 @@ const isLocalEnv =
   process.env.IS_LOCAL ||
   !process.env.LAMBDA_TASK_ROOT
 
-export class Images extends DataSource {
+export class Images extends DataSource<Context> {
   baseURL: string = `https://image.tmdb.org/t/p/`
-  cachedColor: any
+  cachedColor: any = null
   s3Base?: string
   S3?: AWS.S3
   bucket: string = ``
 
-  initialize({ cache }: { cache: KeyValueCache<string> }) {
-    this.cachedColor = memoize(this.extractColor, cache)
+  initialize() {
+    this.cachedColor = memoize(this.extractColor)
     this.s3Base = isLocalEnv
       ? `http://${process.env.S3_HOST}:${process.env.S3_PORT}`
       : process.env.S3_URL
@@ -62,62 +76,66 @@ export class Images extends DataSource {
     this.bucket = process.env.S3_BUCKET || ``
   }
 
-  url = (size: string, id: string) => `${this.baseURL}${size}${id}`
+  url = (size: string, id: string): string | null =>
+    size && id ? `${this.baseURL}${size}${id}` : null
 
-  svg: GetSVG = (id, size, color, base64) =>
-    this.getSVG(id, size, color, base64)
+  svg: GetSVG = ({ id, size, color, base64 }) =>
+    this.getSVG({ id, size, color, base64 })
 
-  custom: Custom = (id, size, svg, color, base64) =>
-    svg ? this.svg(id, size, color, base64) : this.url(size, id)
+  custom: Custom = ({ id, size, svg = false, color, base64 }) =>
+    svg ? this.svg({ id, size, color, base64 }) : this.url(size, id)
 
-  original: GetCustom = (id: string, svg: boolean, color, base64) =>
-    this.custom(id, `original`, svg, color, base64)
+  original: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `original`, svg, color, base64 })
 
-  w45: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w45`, svg, color, base64)
+  w45: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w45`, svg, color, base64 })
 
-  w92: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w92`, svg, color, base64)
+  w92: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w92`, svg, color, base64 })
 
-  w154: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w154`, svg, color, base64)
+  w154: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w154`, svg, color, base64 })
 
-  w185: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w185`, svg, color, base64)
+  w185: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w185`, svg, color, base64 })
 
-  w300: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w300`, svg, color, base64)
+  w300: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w300`, svg, color, base64 })
 
-  w342: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w342`, svg, color, base64)
+  w342: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w342`, svg, color, base64 })
 
-  w500: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w500`, svg, color, base64)
+  w500: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w500`, svg, color, base64 })
 
-  w780: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w780`, svg, color, base64)
+  w780: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w780`, svg, color, base64 })
 
-  w1280: GetCustom = (id, svg, color, base64) =>
-    this.custom(id, `w1280`, svg, color, base64)
+  w1280: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `w1280`, svg, color, base64 })
 
-  h632: GetCustom = (id, svg, color) =>
-    this.custom(id, `h632`, svg, color, false)
+  h632: GetCustom = ({ id, svg, color, base64 }) =>
+    this.custom({ id, size: `h632`, svg, color, base64 })
 
-  colors = (id: string) => this.cachedColor(this.url(`original`, id))
+  colors = (id: string): ColorsResult => {
+    const url = this.url(`original`, id)
+    return url ? this?.cachedColor?.(url) || null : null
+  }
 
   extractColor = async (url: Parameters<typeof Vibrant.from>[0]) => {
     const builder = Vibrant.from(url)
     const palette = await builder.getPalette()
-    // eslint-disable-next-line no-console
-    console.log(`extraced color`)
-    return {
-      vibrant: palette?.Vibrant?.getRgb() || null,
-      lightVibrant: palette?.LightVibrant?.getRgb() || null,
-      darkVibrant: palette?.DarkVibrant?.getRgb() || null,
-      muted: palette?.Muted?.getRgb() || null,
-      lightMuted: palette?.LightMuted?.getRgb() || null,
-      darkMuted: palette?.DarkMuted?.getRgb() || null
-    }
+    return (
+      {
+        vibrant: palette.Vibrant?.getRgb().map(round) || null,
+        lightVibrant: palette.LightVibrant?.getRgb().map(round) || null,
+        darkVibrant: palette.DarkVibrant?.getRgb().map(round) || null,
+        muted: palette.Muted?.getRgb().map(round) || null,
+        lightMuted: palette.LightMuted?.getRgb().map(round) || null,
+        darkMuted: palette.DarkMuted?.getRgb().map(round) || null
+      } || null
+    )
   }
 
   params = (Key: string): AWS.S3.HeadObjectRequest => ({
@@ -125,10 +143,21 @@ export class Images extends DataSource {
     Key
   })
 
-  svgPath = (filename: string, size: string, color: string) =>
-    `${size}/${color}${filename.replace(/\.[^/.]+$/, `.svg`)}`
+  /**
+   * Returns the file path for a cached SVG.
+   */
+  svgPath = (
+    filename: string,
+    size: string = `original`,
+    color: Color = `vibrant`
+  ) => `${size}/${color}${filename.replace(/\.[^/.]+$/, `.svg`)}`
 
-  getSVG: GetSVG = async (filename, size, color, base64) => {
+  getSVG: GetSVG = async ({
+    id: filename,
+    size,
+    color = `vibrant`,
+    base64
+  }) => {
     const path = this.svgPath(filename, size, color)
     const params = this.params(path)
     try {
@@ -170,10 +199,8 @@ export class Images extends DataSource {
     }
   }
 
-  traceImg = async (path: string, color: Color) => {
-    const svg = await this.traceSvg(`${this.baseURL}${path}`, color)
-    return this.optimizeSvg(svg)
-  }
+  traceImg = async (path: string, color: Color) =>
+    this.optimizeSvg(await this.traceSvg(`${this.baseURL}${path}`, color))
 
   traceSvg = (
     url: Parameters<typeof Vibrant.from>[0],
@@ -181,14 +208,19 @@ export class Images extends DataSource {
   ): Promise<string> =>
     new Promise(async (resolve, reject) => {
       const colors = await this.extractColor(url)
-      const trace: typeof Potrace = new Potrace({
-        turdSize: 150,
-        color: `rgb(${colors[color] || [0, 0, 0]})`
-      })
-      //eslint-disable-next-line
-      trace.loadImage(url, (err: Error) =>
-        err ? reject(err) : resolve(trace.getSVG() as string)
-      )
+      if (colors) {
+        const trace: typeof Potrace = new Potrace({
+          turdSize: 150,
+          color: `rgb(${colors[color] || [0, 0, 0]})`
+        })
+        //eslint-disable-next-line
+        trace.loadImage(url, (err: Error) =>
+          err ? reject(err) : resolve(trace.getSVG() as string)
+        )
+      } else {
+        reject(Error(`Could not trace SVG`))
+        return null
+      }
     })
 
   optimizeSvg = async (svg: string) => {
@@ -197,7 +229,7 @@ export class Images extends DataSource {
     return data
   }
 
-  encodeSvgDataUri = (svg: string) => {
+  encodeSvgDataUri = (svg: string): string => {
     const datauri = new DataURI()
     datauri.format(`.svg`, svg)
     return datauri.content

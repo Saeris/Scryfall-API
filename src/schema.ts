@@ -1,6 +1,6 @@
 import { makeExecutableSchema, IResolvers } from "graphql-tools"
-import schemaDirectives from "@saeris/graphql-directives"
-import CustomScalars from "@saeris/graphql-scalars"
+import { Numbers, Dates, Strings } from "@saeris/graphql-directives";
+import { DateTimeScalar, DateTime, URLScalar, URL } from "@saeris/graphql-scalars"
 import * as types from "./types"
 import * as enums from "./types/enums"
 import * as inputs from "./types/inputs"
@@ -8,9 +8,15 @@ import * as inputs from "./types/inputs"
 import * as unions from "./types/unions"
 import resolvers from "./resolvers"
 
+const schemaDirectives = {
+  ...Numbers,
+  ...Dates,
+  ...Strings
+};
+
 const directives = Object.values(schemaDirectives).map(directive =>
   directive.declaration()
-)
+);
 
 export const schema = makeExecutableSchema({
   typeDefs: [
@@ -18,12 +24,14 @@ export const schema = makeExecutableSchema({
     ...Object.values(enums),
     ...Object.values(inputs),
     ...Object.values(unions),
-    ...CustomScalars.keys(),
+    DateTimeScalar,
+    URLScalar,
     ...directives
   ],
   schemaDirectives,
   resolvers: {
-    ...(CustomScalars.values() as Record<any, any>),
+    DateTime,
+    URL,
     ...(resolvers as IResolvers<any, any>)
   },
   resolverValidationOptions: {

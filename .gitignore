@@ -6,7 +6,9 @@ jspm_packages
 .serverless
 .webpack
 .netlify
+/buckets
 /coverage
+/pkg
 /dist
 /build
 /typings
@@ -21,5 +23,6 @@ yarn-error.log*
 .env
 serverless.env.yml
 .nyc_output
+
 coverage.lcov
 engine.json
