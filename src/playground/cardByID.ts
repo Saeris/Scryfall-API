@@ -1,5 +1,5 @@
-export const defaultQuery = `query cardById {
-  card(id: "f0bb1a5c-0f59-4951-827f-fe9df968232d") {
+export const cardByID = `query cardByID($id: String!) {
+  card(id: $id) {
     name
     text
     cmc
