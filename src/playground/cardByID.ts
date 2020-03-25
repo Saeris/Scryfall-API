@@ -1,4 +1,4 @@
-export const cardByID = `query cardByID($id: String!) {
+export const cardByID = `query cardByID($id: ID!) {
   card(id: $id) {
     name
     text

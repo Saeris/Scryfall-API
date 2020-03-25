@@ -695,32 +695,32 @@
           tabs: [
             {
               endpoint: `${protocol}//${hostname}/.netlify/functions/scryfall-api/`,
-              query: `query cardByID($id: String!) {
-						  card(id: $id) {
-						    name
-						    text
-						    cmc
-						    cost
-						    colors
-						    identities
-						    flavorText
-						    type
-						    set {
-						      code
-						      name
-						      cardCount
-						      cards {
-						        page
-						        hasMore
-						        results {
-						          ... on Card {
-						            name
-						          }
-						        }
-						      }
-						    }
-						  }
-						}`,
+              query: `query cardByID($id: ID!) {
+  card(id: $id) {
+    name
+    text
+    cmc
+    cost
+    colors
+    identities
+    flavorText
+    type
+    set {
+      code
+      name
+      cardCount
+      cards {
+        page
+        hasMore
+        results {
+          ... on Card {
+            name
+          }
+        }
+      }
+    }
+  }
+}`,
               name: `cardByID`,
               variables: `{ "id": "f0bb1a5c-0f59-4951-827f-fe9df968232d" }`
             }
