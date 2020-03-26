@@ -1,5 +1,7 @@
 {
 	"noHeader": true,
+	"homepage:": "http://saeris.io",
 	"repo": "https://github.com/saeris/scryfall-api",
+	"favicon": "static/favicon.ico",
 	"styles": "styles/styles.css"
 }
