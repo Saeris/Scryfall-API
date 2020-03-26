@@ -4,7 +4,7 @@ import { cardByID } from "./cardByID"
 const isDev = !!process.env.OFFLINE
 
 const endpoint = `${
-  process.env.OFFLINE ? `http://localhost:1337/` : process.env.URL
+  process.env.OFFLINE ? `http://localhost:1337/` : `${process.env.URL}/`
 }${process.env.NETLIFY ? `.netlify/functions/scryfall-api/` : `dev`}`
 
 export const playground: Config["playground"] = {
