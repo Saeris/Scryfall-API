@@ -1,12 +1,5 @@
 <h1 align="center" style="text-align: center;">🌠 Scryfall API</h1>
-<p align="center">
-  <a href="https://travis-ci.com/Saeris/Scryfall-API">
-    <img src="https://travis-ci.com/Saeris/Scryfall-API.svg?branch=master" alt="Build Status" />
-  </a>
-  <a href="https://codecov.io/gh/Saeris/Scryfall-API">
-    <img src="https://codecov.io/gh/Saeris/Scryfall-API/branch/master/graph/badge.svg" alt="Code Coverage"/>
-  </a>
-</p>
+<p align="center"><a href="https://travis-ci.com/Saeris/Scryfall-API"><img src="https://travis-ci.com/Saeris/Scryfall-API.svg?branch=master" alt="Build Status" /></a><a href="https://codecov.io/gh/Saeris/Scryfall-API"><img src="https://codecov.io/gh/Saeris/Scryfall-API/branch/master/graph/badge.svg" alt="Code Coverage"/></a></p>
 <p align="center">A GraphQL API wrapper for Scryfall built with <a href="https://www.apollographql.com/docs/apollo-server/features/data-sources.html">Apollo Data Sources</a>.</p>
 
 ## 🛠️ Setup
@@ -23,6 +16,10 @@ Once that's done, you can now start up a development server using `yarn start`. 
 
 Lambda: http://localhost:1337/dev
 Netlify: http://localhost:1337/.netlify/functions/scryfall-api
+
+## 🕹️ Demo
+
+You can try out the API using the GraphQL Playground hosted at https://scryfall.saeris.io/.netlify/functions/scryfall-api
 
 ## 🧪 Testing
 
