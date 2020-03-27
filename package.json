@@ -1,6 +1,6 @@
 {
   "name": "@saeris/scryfall-api",
-  "description": "A GraphQL API wrapper for Scryfall built with Apollo Datasources.",
+  "description": "A GraphQL API wrapper for Scryfall built with Apollo Datasources",
   "version": "1.0.0",
   "keywords": [
     "scryfall",

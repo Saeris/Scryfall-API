@@ -1,4 +1,6 @@
 {
+	"name": "🌠 Scryfall API",
+	"description": "A GraphQL API wrapper for Scryfall built with Apollo Datasources",
 	"noHeader": true,
 	"homepage:": "http://saeris.io",
 	"repo": "https://github.com/saeris/scryfall-api",
